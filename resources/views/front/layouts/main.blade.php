@@ -121,190 +121,149 @@ author Email: db_duabelas@yahoo.com
 
 
 
-  <!--====================================================
-                      CONTACT HOME
-  ======================================================-->
-  <div class="overlay-contact-h"></div>
-  <section id="contact-h" class="bg-parallax contact-h-bg">
+
+  <div id="contact" class="section md-padding">
+
+    <!-- Container -->
     <div class="container">
+
+      <!-- Row -->
       <div class="row">
-        <div class="col-md-6">
-          <div class="contact-h-cont">
-            <h3 class="cl-white">{{ Menus::getNodeWithImg(['NodeID' => 38])->title }}</h3><br>
-            <form action="{{ route('comments.store') }}" method="post">
-              @csrf
-              <div class="form-group cl-white">
-                <label for="name">Your Name</label>
-                <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name" name="name" required> 
-              </div>  
-              <div class="form-group cl-white">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required> 
-              </div>  
-              <div class="form-group cl-white">
-                <label for="subject">Subject</label>
-                <input type="text" class="form-control" id="subject" aria-describedby="subjectHelp" placeholder="Enter subject" name="subject" required> 
-              </div>  
-              <div class="form-group cl-white">
-                <label for="message">Message</label>
-                <textarea class="form-control" id="message" rows="3" required name="message"></textarea>
-              </div>  
-              <button class="btn btn-general btn-white" role="button"><i fa fa-right-arrow></i>GET CONVERSATION</button>
-            </form>
+
+        <!-- Section-header -->
+        <div class="section-header text-center">
+          <h2 class="title">Get in touch</h2>
+        </div>
+        <!-- /Section-header -->
+
+        <!-- contact -->
+        <div class="col-sm-4">
+          <div class="contact">
+            <i class="fa fa-phone"></i>
+            <h3>Phone</h3>
+            <p>{{  App\Entities\Admin\Company::find(1)->phone1 }}</p>
           </div>
         </div>
-      </div>
-    </div>         
-  </section> 
+        <!-- /contact -->
 
-  <!--====================================================
-                         NEWS
-  ======================================================-->
-  <section id="comp-offer">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-3 col-sm-6  desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-          <h2>Latest News</h2>
-          <div class="heading-border-light"></div> 
-          <button class="btn btn-general btn-green" role="button">See More</button>
-        </div>
-
-        @foreach (Menus::getNavbar(['NodeID' => 29, 'limit' => 3]) as $element)
-          <div class="col-md-3 col-sm-6 desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
-            <div class="desc-comp-offer-cont">
-              <div class="thumbnail-blogs">
-                  <div class="caption">
-                    <i class="fa fa-chain"></i>
-                  </div>
-                  <img src="{{ url(Storage::url($element->medianode1)) }}" class="img-fluid" alt="...">
-              </div>
-              <h3>{{ $element->title }}</h3>
-              <p class="desc">{!! $element->content4 !!}</p>
-              <a href="{{ $element->alias }}"><i class="fa fa-arrow-circle-o-right"></i> Learn More</a>
-            </div>
+        <!-- contact -->
+        <div class="col-sm-4">
+          <div class="contact">
+            <i class="fa fa-envelope"></i>
+            <h3>Email</h3>
+            <p>{{ App\Entities\Admin\Company::find(1)->Email }}">{{ App\Entities\Admin\Company::find(1)->Email }}</p>
           </div>
-        @endforeach
+        </div>
+        <!-- /contact -->
+
+        <!-- contact -->
+        <div class="col-sm-4">
+          <div class="contact">
+            <i class="fa fa-map-marker"></i>
+            <h3>Address</h3>
+            <p>{!! str_replace("</p>", "", str_replace("<p>", "", App\Entities\Admin\Company::find(1)->DeliveryCondition))  !!}</p>
+          </div>
+        </div>
+        <!-- /contact -->
+
+        <!-- contact form -->
+        <div class="col-md-8 col-md-offset-2">
+          <form action="{{ route('comments.store') }}" method="post">
+            @csrf
+            <input type="text" class="input" placeholder="Name" name="name" required>
+            <input type="email" class="input" placeholder="Email" name="email" required>
+            <input type="text" class="input" placeholder="Subject" name="subject" required>
+            <textarea class="input" placeholder="Message" required name="message"></textarea>
+            <button class="main-btn">Send message</button>
+          </form>
+        </div>
+        <!-- /contact form -->
+
       </div>
+      <!-- /Row -->
+
     </div>
-  </section>
+    <!-- /Container -->
 
-  <!--====================================================
-                        FOOTER
-  ======================================================--> 
-      <footer> 
-          <div id="footer-s1" class="footer-s1">
-            <div class="footer">
-              <div class="container">
-                <div class="row">
-                  <!-- About Us -->
-                  <div class="col-md-3 col-sm-6 ">
-                    <div><img src="{{ url(Storage::url(Menus::getNodeWithImg(['NodeID' => 33])->medianode1)) }}" alt="" class="img-fluid"></div>
-                    <ul class="list-unstyled comp-desc-f">
-                       <li>{!! Menus::getNodeWithImg(['NodeID' => 33])->content1 !!}</li> 
-                    </ul><br> 
-                  </div>
-                  <!-- End About Us -->
+  </div>
 
-                  <!-- Recent News -->
-                  <div class="col-md-3 col-sm-6 ">
-                    <div class="heading-footer"><h2>Useful Links</h2></div>
-                    <ul class="list-unstyled link-list">
-                      @foreach ( Menus::getNavbar(['NodeID' => 1]) as $elfoot )
-                        <li>
-                          @if ( count(Menus::getNavbar(['NodeID' => $elfoot->id])) > 0 )
-                            <a href="{{ Menus::getNavbar(['NodeID' => $elfoot->id])[0]->alias }}">{{ $elfoot->title }}</a>
-                          @else
-                            <a href="{{ $elfoot->alias }}">{{ $elfoot->title }}</a>
-                          @endif
-                          <i class="fa fa-angle-right"></i>
-                        </li>
-                      @endforeach 
-                    </ul>
-                  </div>
-                  <!-- End Recent list -->
 
-                  <!-- Recent Blog Entries -->
-                  <div class="col-md-3 col-sm-6 ">
-                    <div class="heading-footer"><h2>Recent Post Entries</h2></div>
-                    <ul class="list-unstyled thumb-list">
-                      @foreach (Menus::getNavbar(['NodeID' => 29, 'limit' => 2]) as $element)
-                        <li>
-                          <div class="overflow-h">
-                            <a href="{{ Url('/'.$element->alias) }}">{{ $element->title }}.</a>
-                            <small>{{ date('d M, Y', strtotime($element->created_at)) }}</small>
-                          </div>
-                        </li>
-                      @endforeach
-                    </ul>
-                  </div>
-                  <!-- End Recent Blog Entries -->
 
-                  <!-- Latest Tweets -->
-                  <div class="col-md-3 col-sm-6">
-                    <div class="heading-footer"><h2>Get In Touch</h2></div>
-                    <address class="address-details-f">
-                      {!! str_replace("</p>", "", str_replace("<p>", "", App\Entities\Admin\Company::find(1)->DeliveryCondition))  !!}<br />
-                      Phone: {{  App\Entities\Admin\Company::find(1)->phone1 }} <br>
-                      Fax: {{  App\Entities\Admin\Company::find(1)->phone2 }} <br>
-                      Email: <a href="mailto:{{ App\Entities\Admin\Company::find(1)->Email }}">{{ App\Entities\Admin\Company::find(1)->Email }}</a>
-                    </address>  
-                    <ul class="list-inline social-icon-f top-data">
-                      <li><a href="#" target="_empty"><i class="fa top-social fa-facebook"></i></a></li>
-                      <li><a href="#" target="_empty"><i class="fa top-social fa-twitter"></i></a></li>
-                      <li><a href="#" target="_empty"><i class="fa top-social fa-google-plus"></i></a></li> 
-                    </ul>
-                  </div>
-                  <!-- End Latest Tweets -->
-                </div>
-              </div><!--/container -->
-            </div> 
+
+  <footer id="footer" class="sm-padding bg-dark">
+
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Row -->
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <!-- footer logo -->
+          <div class="footer-logo">
+            <a href="index.html"><img src="{{ url('theme/img/logo-alt.png') }}" alt="logo"></a>
           </div>
+          <!-- /footer logo -->
 
-          <div id="footer-bottom">
-              <div class="container">
-                  <div class="row">
-                      <div class="col-md-12">
-                          <div id="footer-copyrights">
-                              <p>Copyrights &copy; 2018 All Rights Reserved by WCS Indonesia. 
-                              @foreach (Menus::getNavbar(['NodeID' => 33, 'limit' => 2]) as $term)
-                              <a href="{{ $term->alias }}">{{ $term->title }}</a> 
-                              {{-- <a href="#">Terms of Services</a> --}}
-                              @endforeach
-                              </p>
-                          </div>
-                      </div> 
-                  </div>
-              </div>
+          <!-- footer follow -->
+          <ul class="footer-follow">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+          </ul>
+          <!-- /footer follow -->
+
+          <!-- footer copyright -->
+          <div class="footer-copyright">
+            <p>Copyright © 2018. All Rights Reserved. Designed by <a href="#">Ariandi Nugraha</a></p>
           </div>
-          <a href="#home" id="back-to-top" class="btn btn-sm btn-green btn-back-to-top smooth-scrolls hidden-sm hidden-xs" title="home" role="button">
-              <i class="fa fa-angle-up"></i>
-          </a>
-      </footer>
+          <!-- /footer copyright -->
 
-      <!--Global JavaScript -->
-      <script src="{{ asset('theme/js/jquery/jquery.min.js') }}"></script>
-      <script src="{{ asset('theme/js/popper/popper.min.js') }}"></script>
-      <script src="{{ asset('theme/js/bootstrap/bootstrap.min.js') }}"></script>
-      <script src="{{ asset('theme/js/wow/wow.min.js') }}"></script>
-      <script src="{{ asset('theme/js/owl-carousel/owl.carousel.min.js') }}"></script>
+        </div>
 
-      <!-- Plugin JavaScript -->
-      <script src="{{ asset('theme/js/jquery-easing/jquery.easing.min.js') }}"></script> 
-      <script src="{{ asset('theme/js/custom.js') }}"></script> 
+      </div>
+      <!-- /Row -->
 
-      @if (\Session::has('success-message'))
-        <script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
-        <script type="text/javascript">
-          $.notify({
-            title: '<strong>Success!</strong>',
-            message: 'Success send meesage to us.'
-          },{
-            type: 'success'
-          });
-        </script>
-      @endif
-      
-      @yield('js')
+    </div>
+    <!-- /Container -->
+
+  </footer>
+
+  <div id="back-to-top" style="display: block;"></div>
+
+  <div id="preloader" style="display: none;">
+    <div class="preloader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- jQuery Plugins -->
+  <script type="text/javascript" src="{{ asset('theme/js/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('theme/js/bootstrap.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('theme/js/owl.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('theme/js/jquery.magnific-popup.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('theme/js/main.js') }}"></script>
+
+  @if (\Session::has('success-message'))
+    <script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
+    <script type="text/javascript">
+      $.notify({
+        title: '<strong>Success!</strong>',
+        message: 'Success send meesage to us.'
+      },{
+        type: 'success'
+      });
+    </script>
+  @endif
+  
+  @yield('js')
 
 </body>
 </html>

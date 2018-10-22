@@ -33,22 +33,19 @@ class FrontController extends Controller
     {
         $uriPath = $request->path();
 
-        $homeContent1 = Node::where('id', 11)->first();
-        $whatWeOffer = Node::where('id', 25)->first();
-        $provided = Node::where('id', 37)->first();
+        // $homeContent1 = Node::where('id', 11)->first();
+        $website = Node::where('id', 25)->first();
+        $whatWeOffer = Node::where('id', 37)->first();
 
-        $tigaIcon = $this->menus(12);
-        $whatWeOfferChild = $this->menus(25);
-        $quotesChild = $this->menus(34);
-        $providedChild = $this->menus(37);
+        // $tigaIcon = $this->menus(12);
+        $websiteChild = $this->menus(25);
+        // $quotesChild = $this->menus(34);
+        $whatWeOfferChild = $this->menus(37);
 
-        return view('front.home.index', ['homeContent1' => $homeContent1, 
-                                            'tigaIcon' => $tigaIcon,
+        return view('front.home.index', ['website' => $website,
+                                            'websiteChild' => $websiteChild,
                                             'whatWeOffer' => $whatWeOffer,
-                                            'whatWeOfferChild' => $whatWeOfferChild,
-                                            'quotesChild' => $quotesChild,
-                                            'provided' => $provided,
-                                            'providedChild' => $providedChild]);
+                                            'whatWeOfferChild' => $whatWeOfferChild]);
     }
 
     public function content($alias = 'home', Request $request)
