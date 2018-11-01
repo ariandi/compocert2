@@ -120,7 +120,8 @@ class LoginController extends Controller
         if($request->path == 'loginadmin'){
             return redirect()->route('persons.index');
         }else{
-            return redirect()->route('profiles.'.session()->get('LanguageID').'.index');
+            // return redirect()->route('profiles.'.session()->get('LanguageID').'.index');
+            return redirect()->route('persons.index');
         }
     }
 }

@@ -33,7 +33,7 @@ class FrontController extends Controller
     {
         $uriPath = $request->path();
 
-        // $homeContent1 = Node::where('id', 11)->first();
+        $node = Node::find(2);
         $website = Node::where('id', 25)->first();
         $whatWeOffer = Node::where('id', 37)->first();
 
@@ -45,7 +45,8 @@ class FrontController extends Controller
         return view('front.home.index', ['website' => $website,
                                             'websiteChild' => $websiteChild,
                                             'whatWeOffer' => $whatWeOffer,
-                                            'whatWeOfferChild' => $whatWeOfferChild]);
+                                            'whatWeOfferChild' => $whatWeOfferChild,
+                                            'node' => $node]);
     }
 
     public function content($alias = 'home', Request $request)
@@ -62,7 +63,12 @@ class FrontController extends Controller
             $cert = \Session::get('cert');
         }
 
-        return view('front.home.'.$node->template, ['node' => $node, 'cert' => $cert]);
+        $parent = null;
+
+        $parent = $this->getParent($node->id);
+        $aside = $this->menus($parent->id);
+
+        return view('front.home.'.$node->template, ['node' => $node, 'cert' => $cert, 'parent' => $parent->title, 'aside' => $aside]);
     }
 
     
@@ -124,6 +130,14 @@ class FrontController extends Controller
         //$sendemail = Mail::to($datauser->email)->send(new SendEmail($objDemo));
         return redirect()->route('front.home')
                         ->with('success','Tusen takk');
+    }
+
+    public function getParent($id = 1)
+    {
+        $getParent = Nodestructures::select('n.title', 'n.alias', 'n.id')
+                            ->join('nodes as n', 'n.id', '=', 'nodestructures.parent_node_id')
+                            ->where(['nodestructures.child_node_id' => $id, 'nodestructures.active' => 1, 'n.active' => 1])->first();
+        return $getParent;
     }
 }
 

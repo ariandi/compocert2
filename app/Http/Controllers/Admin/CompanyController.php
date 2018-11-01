@@ -184,8 +184,9 @@ class CompanyController extends Controller
     {
         $company = Company::select(['companies.id', 'companies.CompanyName', 'companies.Discount', 'companies.OrgNumber', 
                                     'companies.ExternalID', 'companies.DCity'])
-                    ->join('companystructures AS cs', 'cs.ChildCompanyID', '=', 'companies.id')
-                    ->where(['companies.Active' => 1, 'cs.Active' => 1, 'cs.ParentCompanyID' => $parent]);
+                    // ->join('companystructures AS cs', 'cs.ChildCompanyID', '=', 'companies.id')
+                     ->where(['companies.Active' => 1]);
+                    // ->where(['companies.Active' => 1, 'cs.Active' => 1, 'cs.ParentCompanyID' => $parent]);
 
         // dd($company->toSql());
 

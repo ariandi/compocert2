@@ -37,7 +37,9 @@ class CertificateController extends Controller
      */
     public function create()
     {
-        $companies = Company::pluck('CompanyName', 'id')->all();
+        $companies = Company::where('active', 1)->pluck('CompanyName', 'id')->all();
+        // $companies = Company::where('active', 1)->get();
+        // dd($companies);
         $status = $this->cons['status'];
         $cert = new Certificate();
         return view('admin.certificates.create', ['companies' => $companies,
@@ -202,5 +204,26 @@ class CertificateController extends Controller
                                         })
                 ->rawColumns(['action', 'file'])
                 ->make(true);
+    }
+
+    public function showFront(Request $request, $id)
+    {
+        $cert = Certificate::where(['company_name' => $request->company_name, 
+                                    'certificate_no' => $request->certificate_no])
+                ->first();
+
+        if($cert && $cert->status == 'active'){
+            return redirect()->back()
+                        ->with(['success' => 'Certificate found and valid', 'cert' => $cert]);
+        }elseif ($cert && $cert->status != 'hide') {
+            return redirect()->back()
+                        ->with(['failed' => 'Certificate found and '.$cert->status, 'cert' => $cert]);
+        }
+
+        $cert = new Certificate();
+        $cert->company_name = $request->company_name;
+        $cert->certificate_no = $request->certificate_no;
+        return redirect()->back()
+                        ->with(['failed' => 'Certificate not found', 'cert' => $cert]);
     }
 }

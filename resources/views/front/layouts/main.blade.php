@@ -16,7 +16,7 @@ author Email: db_duabelas@yahoo.com
   <meta name="author" content="Ariandi Nugraha">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <link rel="shortcut icon" href="{{ asset('images/wcs-bahanicon.ico') }}">
+  <link rel="shortcut icon" href="{{ asset('logo/logointercet.png') }}">
 
   <title>@yield('title')</title>
 
@@ -41,23 +41,26 @@ author Email: db_duabelas@yahoo.com
                          HEADER
   ======================================================--> 
   <!-- Header -->
-  <header id="home">
-      <!-- Background Image -->
-      <div class="bg-img" style="background-image: url({{ asset('theme/img/background1.jpg') }});">
-        <div class="overlay"></div>
-      </div>
-      <!-- /Background Image -->
+  <header id="{{ (Route::currentRouteName() == 'front.home') ? 'home' : '' }}">
+
+      @if(Route::currentRouteName() == 'front.home')
+        <!-- Background Image -->
+        <div class="bg-img" style="background-image: url({{ asset('theme/img/background1.jpg') }});">
+          <div class="overlay"></div>
+        </div>
+        <!-- /Background Image -->
+      @endif
 
       <!-- Nav -->
-      <nav id="nav" class="navbar nav-transparent">
+      <nav id="nav" class="navbar {{ (Route::currentRouteName() == 'front.home') ? 'nav-transparent' : '' }}">
         <div class="container">
 
           <div class="navbar-header">
             <!-- Logo -->
             <div class="navbar-brand">
               <a href="/">
-                <img class="logo" src="{{ asset('theme/img/logo.png') }}" alt="logo">
-                <img class="logo-alt" src="{{ asset('theme/img/logo-alt.png') }}" alt="logo">
+                <img class="logo" src="{{ asset('logo/logointercet.png') }}" alt="logo">
+                <img class="logo-alt" src="{{ asset('logo/logointercet.png') }}" alt="logo">
               </a>
             </div>
             <!-- /Logo -->
@@ -91,18 +94,6 @@ author Email: db_duabelas@yahoo.com
                 </li>
               @endif
             @endforeach
-            {{-- <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#service">Services</a></li>
-            <li><a href="#pricing">Prices</a></li>
-            <li><a href="#team">Team</a></li>
-            <li class="has-dropdown"><a href="#blog">Blog</a>
-              <ul class="dropdown">
-                <li><a href="blog-single.html">blog post</a></li>
-              </ul>
-            </li>
-            <li><a href="#contact">Contact</a></li> --}}
           </ul>
           <!-- /Main navigation -->
 
@@ -111,12 +102,136 @@ author Email: db_duabelas@yahoo.com
       <!-- /Nav -->
       @if(Route::currentRouteName() == 'front.home')
         @include('front.layouts.headerimg')
+      @else
+        {{-- @include('front.layouts.header', ['title' => @yield('subtitle')]) --}}
+        <!-- header wrapper -->
+        <div class="header-wrapper sm-padding bg-grey">
+          <div class="container">
+            <h2>@yield('subtitle')</h2>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/">@yield('parent')</a></li>
+              <li class="breadcrumb-item active">@yield('subtitle')</li>
+            </ul>
+          </div>
+        </div>
+        <!-- /header wrapper -->
       @endif
 
     </header>
     <!-- /Header -->
 
   @yield('content')
+
+
+  <div id="numbers" class="section sm-padding">
+
+    <!-- Background Image -->
+    <div class="bg-img" style="background-image: url({{ url('theme/img/background2.jpg') }});">
+      <div class="overlay"></div>
+    </div>
+    <!-- /Background Image -->
+
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Row -->
+      <div class="row">
+
+        <!-- number -->
+        <div class="col-sm-3 col-xs-6">
+          <div class="number">
+            <i class="fa fa-users"></i>
+            <h3 class="white-text"><span class="counter">451</span></h3>
+            <span class="white-text">Happy clients</span>
+          </div>
+        </div>
+        <!-- /number -->
+
+        <!-- number -->
+        <div class="col-sm-3 col-xs-6">
+          <div class="number">
+            <i class="fa fa-trophy"></i>
+            <h3 class="white-text"><span class="counter">12</span></h3>
+            <span class="white-text">Awards won</span>
+          </div>
+        </div>
+        <!-- /number -->
+
+        <!-- number -->
+        <div class="col-sm-3 col-xs-6">
+          <div class="number">
+            <i class="fa fa-coffee"></i>
+            <h3 class="white-text"><span class="counter">154</span>K</h3>
+            <span class="white-text">Cups of Coffee</span>
+          </div>
+        </div>
+        <!-- /number -->
+
+        <!-- number -->
+        <div class="col-sm-3 col-xs-6">
+          <div class="number">
+            <i class="fa fa-file"></i>
+            <h3 class="white-text"><span class="counter">45</span></h3>
+            <span class="white-text">Projects completed</span>
+          </div>
+        </div>
+        <!-- /number -->
+
+      </div>
+      <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+  </div>
+
+
+
+
+  <!-- Blog -->
+  <div id="blog" class="section md-padding bg-grey">
+
+    <!-- Container -->
+    <div class="container">
+
+      <!-- Row -->
+      <div class="row">
+
+        <!-- Section header -->
+        <div class="section-header text-center">
+          <h2 class="title">Lates news</h2>
+        </div>
+        <!-- /Section header -->
+
+        <!-- blog -->
+        @foreach( Menus::getNavbar(['NodeID' => 29]) as $latesNews )
+        <div class="col-md-4">
+          <div class="blog">
+            <div class="blog-img">
+              <img class="img-responsive" src="{{ asset( url(Storage::url($latesNews->medianode4)) ) }}" alt="">
+            </div>
+            <div class="blog-content">
+              <ul class="blog-meta">
+                <li><i class="fa fa-user"></i>Intercert Admin</li>
+                <li><i class="fa fa-clock-o"></i>{{ date('d M y', strtotime($latesNews->created_at)) }}</li>
+              </ul>
+              <h3>{{ $latesNews->title }}</h3>
+              <p>{!! strip_tags(substr($latesNews->content4, 0, 125)) !!}</p>
+              <a href="{{ url($latesNews->alias) }}">Read more</a>
+            </div>
+          </div>
+        </div>
+        @endforeach
+        <!-- /blog -->
+
+      </div>
+      <!-- /Row -->
+
+    </div>
+    <!-- /Container -->
+
+  </div>
+  <!-- /Blog -->
 
 
 
@@ -151,7 +266,7 @@ author Email: db_duabelas@yahoo.com
           <div class="contact">
             <i class="fa fa-envelope"></i>
             <h3>Email</h3>
-            <p>{{ App\Entities\Admin\Company::find(1)->Email }}">{{ App\Entities\Admin\Company::find(1)->Email }}</p>
+            <p>{{ App\Entities\Admin\Company::find(1)->Email }}</p>
           </div>
         </div>
         <!-- /contact -->
@@ -168,7 +283,7 @@ author Email: db_duabelas@yahoo.com
 
         <!-- contact form -->
         <div class="col-md-8 col-md-offset-2">
-          <form action="{{ route('comments.store') }}" method="post">
+          <form action="{{ route('comments.store-front') }}" method="post">
             @csrf
             <input type="text" class="input" placeholder="Name" name="name" required>
             <input type="email" class="input" placeholder="Email" name="email" required>

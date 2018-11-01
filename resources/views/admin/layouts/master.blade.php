@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/plugins/core/css/skins/_all-skins.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style-ari.css') }}" />
     {{-- <link rel="SHORTCUT ICON" href="{{asset('images/icon-wh.png')}}" type="image/vnd.microsoft.icon" /> --}}
-    <link rel="shortcut icon" type="image/png" href="{{ asset('images/wcs-bahanicon.ico') }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('logo/logointercet.png') }}" />
     @yield('style')
     @yield('css_custom')
 </head>
@@ -28,9 +28,9 @@
     <!-- Logo -->
     <a href="../../index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>W</b>CS</span>
+      <span class="logo-mini"><b>Inter</b>Cert</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>WCS</b> Indonesia</span>
+      <span class="logo-lg"><b>Intercert</b> Indonesia</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -126,7 +126,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; 2018 <a href="#">WCS Indonesia</a>.</strong> All rights
+    <strong>Copyright &copy; 2018 <a href="#">Intercert Indonesia</a>.</strong> All rights
     reserved.
   </footer>
 

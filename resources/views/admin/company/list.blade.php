@@ -61,6 +61,7 @@ Companies / Customers
                 	<div class="panel-heading">Company List</div>
 
 	                <div class="panel-body">
+	                	<div class="table-responsive">
 	                    <table class="table table-hover table-bordered table-striped datatable" style="width:100%">
 	                        <thead>
 	                            <tr>
@@ -74,6 +75,7 @@ Companies / Customers
 	                            </tr>
 	                        </thead>
 	                    </table>
+	                  </div>
 	            	</div>
 	            </div>
 

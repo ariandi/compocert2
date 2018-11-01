@@ -1,7 +1,15 @@
 @extends('front.layouts.main')
 
 @section('title')
-WCS Indonesia | {{ $node->title }}
+Intercert Indonesia | {{ $node->title }}
+@endsection
+
+@section('subtitle')
+{{ $node->title }}
+@endsection
+
+@section('parent')
+{{ $parent }}
 @endsection
 
 @section('keywords')
@@ -13,7 +21,7 @@ $node->description
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('theme/css/about.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('theme/css/about.css') }}"> --}}
 <style type="text/css">
   .panel-primary {
       border-color: #337ab7 !important;
@@ -82,75 +90,100 @@ $node->description
 
 @section('content')
   
-  <!--====================================================
-                         HOME-P
-  ======================================================-->
-      <div id="home" class="home-p pages-head1 text-center">
-          <div class="container">
-              {!! $node->content4 !!}
-          </div>
-          <!--/end container-->
-      </div>
+<!-- Blog -->
+<div id="blog" class="section md-padding" style="padding-top: 50px;">
 
-  <!--====================================================
-                          ABOUT-P1
-  ======================================================-->
-      <section id="about-p1">
-        <div id="">
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-8" style="margin: 0 auto;">
-                      
-                      @if (\Session::has('success'))
-                        <div class="alert alert-success notif">
-                            <p>{{ Session::get('success') }}</p>
-                        </div><br />
-                      @endif
+  <!-- Container -->
+  <div class="container">
 
-                      @if (\Session::has('failed'))
-                        <div class="alert alert-danger notif">
-                            <p>{{ Session::get('failed') }}</p>
-                        </div><br />
-                      @endif
+    <!-- Row -->
+    <div class="row">
 
-                      <div class="comment-box-sn">
-                        <div class="panel panel-primary">
-                          <div class="panel-heading">Certificate Check</div>
-                          <div class="panel-body">
-                            {!! Form::open(['route'=> ['certificates.show', $node->id] , 'method' => 'GET', 'files'=>true]) !!}
-                              <input type="text" name="company_name" placeholder="Fill your company name" class="form-control" value="{{ $cert->company_name }}"><br>
-                              <input type="text" name="certificate_no" placeholder="Certificate nomor" class="form-control" value="{{ $cert->certificate_no }}"><br>
-                              <button class="btn btn-general btn-green" style="width: 100%;" type="submit">Check</button>
-                            {!! Form::close() !!}
-                          </div>
-                        </div>
-                      </div>
+      <!-- Main -->
+      <main id="main" class="col-md-9">
+        <div class="blog">
+          
+          <div class="blog-content">
+              
+              @if (\Session::has('success'))
+                <div class="alert alert-success notif">
+                    <p>{{ Session::get('success') }}</p>
+                </div><br />
+              @endif
 
-                      @if (Session::has('success'))
-                        <div class="cert-img-show">
-                          <div class="cert-active">Active</div>
-                          <a href="{{ url(Storage::url($cert->file)) }}">
-                            <img src="{{ url(Storage::url($cert->file)) }}" 
-                            title="{{ $cert->certificate_no }}" class="img-responsive"
-                            style="display: block;
-                                    margin-left: auto;
-                                    margin-right: auto;
-                                    max-width: 100%;" />
-                          </a>
-                        </div>
-                      @endif
-                      
+              @if (\Session::has('failed'))
+                <div class="alert alert-danger notif">
+                    <p>{{ Session::get('failed') }}</p>
+                </div><br />
+              @endif
+
+              <div class="comment-box-sn">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">Certificate Check</div>
+                  <div class="panel-body">
+                    {!! Form::open(['route'=> ['certificates.show-front', $node->id] , 'method' => 'GET', 'files'=>true]) !!}
+                      <input type="text" name="company_name" placeholder="Fill your company name" class="form-control" value="{{ $cert->company_name }}"><br>
+                      <input type="text" name="certificate_no" placeholder="Certificate nomor" class="form-control" value="{{ $cert->certificate_no }}"><br>
+                      <button class="btn btn-general btn-green" style="width: 100%;" type="submit">Check</button>
+                    {!! Form::close() !!}
                   </div>
-                  {{-- <div class="col-md-4">
-                      <div class="about-p1-img">
-                          @if( isset($node->getImages->path) )
-                            <img src="{{ url(Storage::url($node->getImages->path)) }}" class="img-fluid wow fadeInUp" data-wow-delay="0.1s" alt="...">
-                          @endif
-                      </div>
-                  </div> --}}
+                </div>
               </div>
+
+              @if (Session::has('success'))
+                <div class="cert-img-show">
+                  <div class="cert-active">Active</div>
+                  <a href="{{ url(Storage::url($cert->file)) }}">
+                    <img src="{{ url(Storage::url($cert->file)) }}" 
+                    title="{{ $cert->certificate_no }}" class="img-responsive"
+                    style="display: block;
+                            margin-left: auto;
+                            margin-right: auto;
+                            max-width: 100%;" />
+                  </a>
+                </div>
+              @endif
+
+          </div>
+          
+        </div>
+      </main>
+      <!-- /Main -->
+
+
+      <!-- Aside -->
+      <aside id="aside" class="col-md-3">
+
+        <!-- Search -->
+        <div class="widget">
+          <div class="widget-search">
+            <input class="search-input" type="text" placeholder="search">
+            <button class="search-btn" type="button"><i class="fa fa-search"></i></button>
           </div>
         </div>
-      </section>
+        <!-- /Search -->
+
+        <!-- Category -->
+        <div class="widget">
+          <h3 class="title">{{ $parent }}</h3>
+          <div class="widget-category">
+            @foreach($aside as $a)
+              <a href="{{url($a->alias)}}">{{ $a->title }}</a>
+            @endforeach
+          </div>
+        </div>
+        <!-- /Category -->
+
+      </aside>
+      <!-- /Aside -->
+
+    </div>
+    <!-- /Row -->
+
+  </div>
+  <!-- /Container -->
+
+</div>
+<!-- /Blog -->
 
 @endsection

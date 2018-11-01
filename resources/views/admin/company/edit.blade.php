@@ -97,7 +97,7 @@ Edit Company
 			                  <label for="CompanyName" class="col-sm-3 control-label">Company name</label>
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->CompanyName or old('CompanyName') }}" placeholder="Company name" name="CompanyName">
+			                    value="{{ $company->CompanyName }}" placeholder="Company name" name="CompanyName">
 			                  </div>
 			                </div>
 
@@ -105,7 +105,7 @@ Edit Company
 			                  <label for="CompanyNumber" class="col-sm-3 control-label">Company number</label>
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->CompanyNumber or old('CompanyNumber') }}" placeholder="Company number" name="CompanyNumber">
+			                    value="{{ $company->CompanyNumber }}" placeholder="Company number" name="CompanyNumber">
 			                  </div>
 			                </div>
 
@@ -114,7 +114,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                  	<input type="text" class="form-control" 
-			                    value="{{ $company->phone2 or old('phone2') }}" placeholder="Phone 2" name="phone2">
+			                    value="{{ $company->phone2 }}" placeholder="Phone 2" name="phone2">
 			                  </div>
 			                </div>
 			                <div class="form-group">
@@ -122,7 +122,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                  	<input type="text" class="form-control" 
-			                    value="{{ $company->phone3 or old('phone3') }}" placeholder="Phone 3" name="phone3">
+			                    value="{{ $company->phone3 }}" placeholder="Phone 3" name="phone3">
 			                  </div>
 			                </div>
 
@@ -147,7 +147,7 @@ Edit Company
 			                  <label for="Email" class="col-sm-3 control-label">Company email</label>
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->Email or old('Email') }}" placeholder="Company email" name="Email">
+			                    value="{{ $company->Email }}" placeholder="Company email" name="Email">
 			                  </div>
 			                </div>
 
@@ -155,7 +155,7 @@ Edit Company
 			                  <label for="WWW" class="col-sm-3 control-label">Company website</label>
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->WWW or old('WWW') }}" placeholder="Company website" name="WWW">
+			                    value="{{ $company->WWW }}" placeholder="Company website" name="WWW">
 			                  </div>
 			                </div>
 
@@ -164,7 +164,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->phone1 or old('phone1') }}" placeholder="Phone 1" name="phone1">
+			                    value="{{ $company->phone1 }}" placeholder="Phone 1" name="phone1">
 			                  </div>
 			                </div>
 
@@ -231,7 +231,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                  	<textarea name="DeliveryCondition">
-			                  		{{ $company->DeliveryCondition or old('DeliveryCondition') }}
+			                  		{{ $company->DeliveryCondition }}
 			                  	</textarea>
 			                  </div>
 			                </div>
@@ -240,7 +240,7 @@ Edit Company
 			                  <label for="Unit" class="col-sm-3 control-label">Vat outgoing account</label>
 
 			                  <div class="col-sm-9">
-			                    <input type="text" class="form-control" value="{{ $company->VatOutAccount or old('VatOutAccount') }}" placeholder="Vat outgoing account" name="VatOutAccount">
+			                    <input type="text" class="form-control" value="{{ $company->VatOutAccount }}" placeholder="Vat outgoing account" name="VatOutAccount">
 			                  </div>
 			                </div>
 
@@ -249,7 +249,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->VatInvestmentAccount or old('VatInvestmentAccount') }}" 
+			                    value="{{ $company->VatInvestmentAccount }}" 
 			                    placeholder="Vat invesment account" name="VatInvestmentAccount">
 			                  </div>
 			                </div>
@@ -259,7 +259,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->AccountSale or old('AccountSale') }}" placeholder="Account Sale" name="AccountSale">
+			                    value="{{ $company->AccountSale }}" placeholder="Account Sale" name="AccountSale">
 			                  </div>
 			                </div>
 
@@ -268,7 +268,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->HourPrice or old('HourPrice') }}" placeholder="Hour Price" name="HourPrice">
+			                    value="{{ $company->HourPrice }}" placeholder="Hour Price" name="HourPrice">
 			                  </div>
 			                </div>
 
@@ -277,7 +277,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->CostPrice or old('CostPrice') }}" placeholder="Cost Price" name="CostPrice">
+			                    value="{{ $company->CostPrice }}" placeholder="Cost Price" name="CostPrice">
 			                  </div>
 			                </div>
 
@@ -286,7 +286,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->PKPNumber or old('PKPNumber') }}" placeholder="PKP Number" name="PKPNumber">
+			                    value="{{ $company->PKPNumber }}" placeholder="PKP Number" name="PKPNumber">
 			                  </div>
 			                </div>
 
@@ -344,7 +344,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                  	<textarea name="PaymentCondition">
-			                  			{{ $company->PaymentCondition or old('PaymentCondition') }}
+			                  			{{ $company->PaymentCondition }}
 			                  	</textarea>
 			                  </div>
 			                </div>
@@ -353,7 +353,7 @@ Edit Company
 			                  <label for="Unit" class="col-sm-3 control-label">Vat incomming account</label>
 
 			                  <div class="col-sm-9">
-			                    <input type="text" class="form-control" value="{{ $company->VatInAccount or old('VatInAccount') }}" placeholder="Vat incomming account" name="VatInAccount">
+			                    <input type="text" class="form-control" value="{{ $company->VatInAccount }}" placeholder="Vat incomming account" name="VatInAccount">
 			                  </div>
 			                </div>
 
@@ -362,7 +362,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->VatAccount or old('VatAccount') }}" 
+			                    value="{{ $company->VatAccount }}" 
 			                    placeholder="Vat account" name="VatAccount">
 			                  </div>
 			                </div>
@@ -372,7 +372,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->AccountInvestment or old('AccountInvestment') }}" 
+			                    value="{{ $company->AccountInvestment }}" 
 			                    placeholder="Account Investment" name="AccountInvestment">
 			                  </div>
 			                </div>
@@ -382,7 +382,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->TravelPrice or old('TravelPrice') }}" placeholder="Travel Price" name="TravelPrice">
+			                    value="{{ $company->TravelPrice }}" placeholder="Travel Price" name="TravelPrice">
 			                  </div>
 			                </div>
 
@@ -391,7 +391,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" 
-			                    value="{{ $company->AccountPlanID or old('AccountPlanID') }}" placeholder="Account plan ID" 
+			                    value="{{ $company->AccountPlanID }}" placeholder="Account plan ID" 
 			                    name="AccountPlanID">
 			                  </div>
 			                </div>
@@ -401,7 +401,7 @@ Edit Company
 
 			                  <div class="col-sm-9">
 			                    <input type="text" class="form-control" id="PKPUsedDate" readonly="true" 
-			                    value="{{ $company->PKPUsedDate or old('PKPUsedDate') }}" placeholder="PKP Used Date" name="PKPUsedDate">
+			                    value="{{ $company->PKPUsedDate }}" placeholder="PKP Used Date" name="PKPUsedDate">
 			                  </div>
 			                </div>
 

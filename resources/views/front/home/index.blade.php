@@ -1,7 +1,7 @@
 @extends('front.layouts.main')
 
 @section('title')
-WCS Indonesia | Certification Body
+Intercert Indonesia | {{ $node->title }}
 @endsection
 
 @section('keywords')
@@ -40,7 +40,8 @@ Home
         @foreach($websiteChild as $wC)
           <div class="col-md-4">
             <div class="about">
-              <i class="{{ $wC->keyword }}"></i>
+              {{-- <i class="{{ $wC->keyword }}"></i> --}}
+              <img src="{{ url( Storage::url($wC->path) ) }}" style="margin-bottom: 15px;">
               <h3>{{ $wC->title }}</h3>
               <p>{{ $wC->description }}</p>
               <a href="#">Read more</a>
@@ -82,67 +83,6 @@ Home
 
       </div>
       <!-- /Row -->
-    </div>
-    <!-- /Container -->
-  </div>
-
-  <div id="numbers" class="section sm-padding">
-
-    <!-- Background Image -->
-    <div class="bg-img" style="background-image: url({{ url('theme/img/background2.jpg') }});">
-      <div class="overlay"></div>
-    </div>
-    <!-- /Background Image -->
-
-    <!-- Container -->
-    <div class="container">
-
-      <!-- Row -->
-      <div class="row">
-
-        <!-- number -->
-        <div class="col-sm-3 col-xs-6">
-          <div class="number">
-            <i class="fa fa-users"></i>
-            <h3 class="white-text"><span class="counter">451</span></h3>
-            <span class="white-text">Happy clients</span>
-          </div>
-        </div>
-        <!-- /number -->
-
-        <!-- number -->
-        <div class="col-sm-3 col-xs-6">
-          <div class="number">
-            <i class="fa fa-trophy"></i>
-            <h3 class="white-text"><span class="counter">12</span></h3>
-            <span class="white-text">Awards won</span>
-          </div>
-        </div>
-        <!-- /number -->
-
-        <!-- number -->
-        <div class="col-sm-3 col-xs-6">
-          <div class="number">
-            <i class="fa fa-coffee"></i>
-            <h3 class="white-text"><span class="counter">154</span>K</h3>
-            <span class="white-text">Cups of Coffee</span>
-          </div>
-        </div>
-        <!-- /number -->
-
-        <!-- number -->
-        <div class="col-sm-3 col-xs-6">
-          <div class="number">
-            <i class="fa fa-file"></i>
-            <h3 class="white-text"><span class="counter">45</span></h3>
-            <span class="white-text">Projects completed</span>
-          </div>
-        </div>
-        <!-- /number -->
-
-      </div>
-      <!-- /Row -->
-
     </div>
     <!-- /Container -->
   </div>
