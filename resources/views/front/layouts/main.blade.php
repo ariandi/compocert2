@@ -41,8 +41,8 @@ author Email: db_duabelas@yahoo.com
                          HEADER
   ======================================================--> 
   <!-- Header -->
-  <header id="{{ (Route::currentRouteName() == 'front.home') ? 'home' : '' }}">
-
+  <header id="{{ (Route::currentRouteName() == 'front.home') ? 'home' : 'content' }}">
+      <div id="headlink"></div>
       @if(Route::currentRouteName() == 'front.home')
         <!-- Background Image -->
         <div class="bg-img" style="background-image: url({{ asset('theme/img/background1.jpg') }});">
@@ -77,7 +77,7 @@ author Email: db_duabelas@yahoo.com
             @foreach ( Menus::getNavbar(['NodeID' => 1]) as $element )
               @if( count(Menus::getNavbar(['NodeID' => $element->id])) > 0 )
                 <li class="has-dropdown">
-                  <a href="#">{{ $element->title }}</a> 
+                  <a href="#headlink">{{ $element->title }}</a> 
                   <ul class="dropdown">
                     @foreach ( Menus::getNavbar(['NodeID' => $element->id]) as $element2 )
                       <li>
