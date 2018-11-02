@@ -34,6 +34,7 @@ Home
         <!-- Section header -->
         <div class="section-header text-center">
           <h2 class="title">{{ $website->title }}</h2>
+          {!! $website->content1 !!}
         </div>
         <!-- /Section header -->
 
