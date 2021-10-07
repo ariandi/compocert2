@@ -12,7 +12,8 @@
 		@foreach($nodes2 as $node2)
 		<div class="c-menu-b">
 			<div class="h-new-node">
-				<a href="{{ route('nodes.index', ['parent' => $node2->node->id, 'lvl' => $lvl]) }}" class="lvl{{ $lvl }}clicked" id="{{ $node2->node->id }}">
+				<a href="{{ route('nodes.index', ['parent' => $node2->node->id, 'lvl' => $lvl]) }}"
+                   class="lvl{{ $lvl }}clicked" id="{{ $node2->node->id }}">
   				<img src="{{ asset('images/folder1.png') }}" class="img-responsive" />
   			</a>
   		</div>

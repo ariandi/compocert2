@@ -15,7 +15,7 @@ List
 @section('content')
 	<section class="content">
 
-		@if (\Session::has('success'))
+	@if (\Session::has('success'))
       <div class="alert alert-success">
           <p>{{ \Session::get('success') }}</p>
       </div><br />
@@ -105,8 +105,10 @@ List
 
       $("body").on('click', '.lvl1clicked', function(e){
       	e.preventDefault();
-      	var Parent = "{{ URL::asset('/admin/nodes') }}/"+$(this).attr('id')+"/2/ajaxnode";
-      	$(".ajavlvl2").load(Parent);
+      	let Parent = "{{ URL::asset('/admin/nodes') }}/"+$(this).attr('id')+"/2/ajaxnode";
+      	$(".ajavlvl2").load(Parent, function (response, status, xhr) {
+      	    // alert(123);
+        });
       	$(".ajavlvl3load").remove();
       	$(".ajavlvl4load").remove();
       });

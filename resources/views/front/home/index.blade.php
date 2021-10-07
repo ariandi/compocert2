@@ -18,7 +18,7 @@ Home
 @section('js')
   <script>
     $(document).ready(function(){
-     
+
     });
   </script>
 @endsection
@@ -42,7 +42,11 @@ Home
           <div class="col-md-4">
             <div class="about">
               {{-- <i class="{{ $wC->keyword }}"></i> --}}
-              <img src="{{ url( Storage::url($wC->path) ) }}" style="margin-bottom: 15px;">
+              <img
+                  class="img-responsive"
+                  src="{{ url( Storage::url($wC->path) ) }}"
+                  style="margin-bottom: 15px;"
+              >
               <h3>{{ $wC->title }}</h3>
               <p>{{ $wC->description }}</p>
               <a href="#">Read more</a>
@@ -57,7 +61,7 @@ Home
   </div>
 
 
-      
+
 
   <div id="service" class="section md-padding" style="background: #ccc7c7">
     <!-- Container -->

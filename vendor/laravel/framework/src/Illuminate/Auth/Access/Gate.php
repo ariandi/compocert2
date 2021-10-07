@@ -385,7 +385,6 @@ class Gate implements GateContract
      * Determine if the callback allows guests.
      *
      * @param  callable  $callback
-     * @param  array  $arguments
      * @return bool
      */
     protected function callbackAllowsGuests($callback)
@@ -452,7 +451,7 @@ class Gate implements GateContract
      * @param  string  $ability
      * @param  array  $arguments
      * @param  bool  $result
-     * @return void
+     * @return bool|null
      */
     protected function callAfterCallbacks($user, $ability, array $arguments, $result)
     {
@@ -491,7 +490,6 @@ class Gate implements GateContract
         }
 
         return function () {
-            return null;
         };
     }
 
@@ -581,7 +579,7 @@ class Gate implements GateContract
     protected function callPolicyBefore($policy, $user, $ability, $arguments)
     {
         if (! method_exists($policy, 'before')) {
-            return null;
+            return;
         }
 
         if ($this->canBeCalledWithUser($user, $policy, 'before')) {
@@ -608,7 +606,7 @@ class Gate implements GateContract
         }
 
         if (! is_callable([$policy, $method])) {
-            return null;
+            return;
         }
 
         if ($this->canBeCalledWithUser($user, $policy, $method)) {

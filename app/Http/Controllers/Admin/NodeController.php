@@ -19,7 +19,7 @@ class NodeController extends Controller
         $constant = [
             'languages' => ['en' => 'English', 'no' => 'Norway', 'pl' => 'Polish', 'id' => 'Indonesia'],
             'roles' => ['admin' => 'Admin', 'viewer' => 'Viewer'],
-            'template' => [ 'index' => 'Index', 'content' => 'Content', 'contact' => 'Contact', 
+            'template' => [ 'index' => 'Index', 'content' => 'Content', 'contact' => 'Contact',
                             'news'=>'News', 'news-list' => 'News List', 'cert' => 'Certification'],
         ];
     /**
@@ -110,15 +110,15 @@ class NodeController extends Controller
 
         $nodes = Node::find($id);
         $nodestr = Nodestructures::where(['parent_node_id' => $parent, 'child_node_id' => $id])->first();
-        
+
         $nodechildstr = Nodestructures::where(['parent_node_id' => $id, 'active' => 1])->orderBy('priority')->get();
 
         $arrTemplates = $this->constant['template'];
 
         $arrNodeID = [];
 
-        return view('admin.content-management.update', 
-                        ['nodes' => $nodes, 'parent' => $parent, 'nodestr' => $nodestr, 
+        return view('admin.content-management.update',
+                        ['nodes' => $nodes, 'parent' => $parent, 'nodestr' => $nodestr,
                         'arrTemplates' => $arrTemplates, 'nodechildstr' => $nodechildstr, 'arrNodeID' => $arrNodeID]);
     }
 
@@ -189,7 +189,11 @@ class NodeController extends Controller
                         ->get();
         }
 
-        return view('admin.ajax.ajaxnode', compact(['nodes', 'nodes2', 'parent', 'lvl']));
+        return view('admin.ajax.ajaxnode', ([
+                                                    'nodes2' => $nodes2,
+                                                    'parent' => $parent,
+                                                    'lvl' => $lvl
+                                                ]));
     }
 
     public static function getNodeNotIn($params)
@@ -239,7 +243,7 @@ class NodeController extends Controller
     {
         $nodes = Node::find($id);
 
-        return view('admin.content-management.update-content-ajax', 
+        return view('admin.content-management.update-content-ajax',
                         ['nodes' => $nodes]);
     }
 
@@ -247,7 +251,7 @@ class NodeController extends Controller
     {
         $nodes = Node::find($id);
 
-        return view('admin.content-management.update-img-ajax', 
+        return view('admin.content-management.update-img-ajax',
                         ['nodes' => $nodes]);
     }
 
@@ -261,10 +265,10 @@ class NodeController extends Controller
 
         $nodes = Node::find($id);
         $nodestr = Nodestructures::where(['parent_node_id' => $parent, 'child_node_id' => $id])->first();
-        
+
         $nodechildstr = Nodestructures::where(['parent_node_id' => $id, 'active' => 1])->orderBy('priority')->get();
 
-        $arrTemplates = [ 'index' => 'Index', 'content' => 'Content', 
+        $arrTemplates = [ 'index' => 'Index', 'content' => 'Content',
                             'contact' => 'Contact','blogg'=>'Blogg',
                             'course' => 'course', 'om_oss' => 'Om Oss'
                         ];
@@ -275,8 +279,8 @@ class NodeController extends Controller
 
         $arrNodeID = [];
 
-        return view('admin.content-management.update-detail-ajax', 
-                        ['nodes' => $nodes, 'parent' => $parent, 'nodestr' => $nodestr, 
+        return view('admin.content-management.update-detail-ajax',
+                        ['nodes' => $nodes, 'parent' => $parent, 'nodestr' => $nodestr,
                         'arrTemplates' => $arrTemplates, 'nodechildstr' => $nodechildstr, 'arrNodeID' => $arrNodeID]);
     }
 
@@ -296,7 +300,7 @@ class NodeController extends Controller
 
         if(Input::hasFile('media1')){
 
-            $uploadedFile = $request->file('media1');        
+            $uploadedFile = $request->file('media1');
             $path = $uploadedFile->store('public/files');
 
             if($node->media1 > 0 || $node->media1 != null){
@@ -312,7 +316,7 @@ class NodeController extends Controller
 
         if(Input::hasFile('media2')){
 
-            $uploadedFile = $request->file('media2');        
+            $uploadedFile = $request->file('media2');
             $path = $uploadedFile->store('public/files');
             $request->img_title1 = $request->img_title2;
             $request->externalurl1 = $request->externalurl2;
@@ -332,7 +336,7 @@ class NodeController extends Controller
 
         if(Input::hasFile('media3')){
 
-            $uploadedFile = $request->file('media3');        
+            $uploadedFile = $request->file('media3');
             $path = $uploadedFile->store('public/files');
             $request->img_title1 = $request->img_title3;
             $request->externalurl1 = $request->externalurl3;
@@ -352,7 +356,7 @@ class NodeController extends Controller
 
         if(Input::hasFile('media4')){
 
-            $uploadedFile = $request->file('media4');        
+            $uploadedFile = $request->file('media4');
             $path = $uploadedFile->store('public/files');
             $request->img_title1 = $request->img_title4;
             $request->externalurl1 = $request->externalurl4;

@@ -21,7 +21,7 @@ author Email: db_duabelas@yahoo.com
   <title>@yield('title')</title>
 
   <!-- Global Stylesheets -->
-  
+
   <!-- Google font -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CVarela+Round" rel="stylesheet">
 
@@ -39,7 +39,7 @@ author Email: db_duabelas@yahoo.com
 
   <!--====================================================
                          HEADER
-  ======================================================--> 
+  ======================================================-->
   <!-- Header -->
   <header id="{{ (Route::currentRouteName() == 'front.home') ? 'home' : 'content' }}">
       <div id="headlink"></div>
@@ -76,8 +76,8 @@ author Email: db_duabelas@yahoo.com
           <ul class="main-nav nav navbar-nav navbar-right">
             @foreach ( Menus::getNavbar(['NodeID' => 1]) as $element )
               @if( count(Menus::getNavbar(['NodeID' => $element->id])) > 0 )
-                <li class="has-dropdown">
-                  <a href="#headlink">{{ $element->title }}</a> 
+                <li class="has-dropdown {{ $parent_data->id == $element->id ? 'active' : '' }}">
+                  <a>{{ $element->title }}</a>
                   <ul class="dropdown">
                     @foreach ( Menus::getNavbar(['NodeID' => $element->id]) as $element2 )
                       <li>
@@ -89,8 +89,10 @@ author Email: db_duabelas@yahoo.com
                   </ul>
                 </li>
               @else
-                <li>
-                  <a href="{{ Url('/'.$element->alias) }}">{{ $element->title }}</a>
+                <li class="{{ $element->id == $node->id ? 'active' : '' }}">
+                  <a href="{{ Url('/'.$element->alias) }}">
+                      {{ $element->title }}
+                  </a>
                 </li>
               @endif
             @endforeach
@@ -281,19 +283,6 @@ author Email: db_duabelas@yahoo.com
         </div>
         <!-- /contact -->
 
-        <!-- contact form -->
-        <div class="col-md-8 col-md-offset-2">
-          <form action="{{ route('comments.store-front') }}" method="post">
-            @csrf
-            <input type="text" class="input" placeholder="Name" name="name" required>
-            <input type="email" class="input" placeholder="Email" name="email" required>
-            <input type="text" class="input" placeholder="Subject" name="subject" required>
-            <textarea class="input" placeholder="Message" required name="message"></textarea>
-            <button class="main-btn">Send message</button>
-          </form>
-        </div>
-        <!-- /contact form -->
-
       </div>
       <!-- /Row -->
 
@@ -377,7 +366,7 @@ author Email: db_duabelas@yahoo.com
       });
     </script>
   @endif
-  
+
   @yield('js')
 
 </body>

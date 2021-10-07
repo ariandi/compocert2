@@ -42,11 +42,16 @@ class FrontController extends Controller
         // $quotesChild = $this->menus(34);
         $whatWeOfferChild = $this->menus(37);
 
-        return view('front.home.index', ['website' => $website,
-                                            'websiteChild' => $websiteChild,
-                                            'whatWeOffer' => $whatWeOffer,
-                                            'whatWeOfferChild' => $whatWeOfferChild,
-                                            'node' => $node]);
+        $parent = $this->getParent($node->id);
+
+        return view('front.home.index', [
+                                                'website' => $website,
+                                                'websiteChild' => $websiteChild,
+                                                'whatWeOffer' => $whatWeOffer,
+                                                'whatWeOfferChild' => $whatWeOfferChild,
+                                                'node' => $node,
+                                                'parent_data' => $parent
+                                            ]);
     }
 
     public function content($alias = 'home', Request $request)
@@ -68,10 +73,16 @@ class FrontController extends Controller
         $parent = $this->getParent($node->id);
         $aside = $this->menus($parent->id);
 
-        return view('front.home.'.$node->template, ['node' => $node, 'cert' => $cert, 'parent' => $parent->title, 'aside' => $aside]);
+        return view('front.home.'.$node->template, [
+            'node' => $node,
+            'cert' => $cert,
+            'parent' => $parent->title,
+            'aside' => $aside,
+            'parent_data' => $parent,
+        ]);
     }
 
-    
+
 
 
     public function searchnode($id = 1)
@@ -92,14 +103,14 @@ class FrontController extends Controller
     }
 
     public function sendEmailSubscript(Request $request)
-    {   
+    {
         //$input = $request->all();
         $checkdata = User::where('email',$request->email)->first();
 
-        if(! isset($checkdata)){ 
+        if(! isset($checkdata)){
 
             $createnew = User::create([
-                'name'          => $request->name, 
+                'name'          => $request->name,
                 'username'      => explode(' ', $request->name)[0],
                 'gender'        => 'M',
                 'role'          => 'viewer',
@@ -117,7 +128,7 @@ class FrontController extends Controller
         $objDemo->sento = '1';
         $objDemo->name  = $request->name;
         $objDemo->email = $request->email;
- 
+
         Mail::to($request->email)->send(new SendEmail($objDemo));
 
         $objDemos = new \stdClass();
@@ -126,7 +137,7 @@ class FrontController extends Controller
         $objDemos->email = $request->email;
 
         Mail::to('rune@wisehouse.no')->send(new SendEmail($objDemos));
- 
+
         //$sendemail = Mail::to($datauser->email)->send(new SendEmail($objDemo));
         return redirect()->route('front.home')
                         ->with('success','Tusen takk');

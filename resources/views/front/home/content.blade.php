@@ -27,7 +27,7 @@ $node->description
 @section('js')
   <script>
     $(document).ready(function(){
-     
+
     });
   </script>
 @endsection
@@ -47,9 +47,13 @@ $node->description
       <!-- Main -->
       <main id="main" class="col-md-9">
         <div class="blog">
-          <div class="blog-img">
+          <div class="blog-img" style="border: 1px solid;border-radius: 10px;">
             @if( isset($node->getImages) )
-              <img class="img-responsive" src="{{ url(Storage::url($node->getImages->path)) }}" alt="">
+              <img
+                  class="img-responsive"
+                  src="{{ url(Storage::url($node->getImages->path)) }}"
+                  alt=""
+                  style="max-width: 100%;margin: auto">
             @endif
 
           </div>
@@ -62,7 +66,7 @@ $node->description
             {!! $node->content1 !!}
           </div>
 
-          
+
         </div>
       </main>
       <!-- /Main -->
