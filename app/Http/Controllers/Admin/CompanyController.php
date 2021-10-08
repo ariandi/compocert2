@@ -19,11 +19,11 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $parent = 0;
-        if(Request::has('parent')){
-            $parent = Request::get('parent');
+        if($request::has('parent')){
+            $parent = $request::get('parent');
         }
 
         $company = new Company();
@@ -107,7 +107,7 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $getCompany = Company::find($id);
         $getCompany->Active = 1;
@@ -138,7 +138,7 @@ class CompanyController extends Controller
             ['key' => 7, 'val' => 'OH Expire',],
         ];
 
-        if(Request::has('ajax')){
+        if($request::has('ajax')){
             $template = 'edit-ajax';
         }
 
