@@ -22,8 +22,8 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $parent = 0;
-        if($request::has('parent')){
-            $parent = $request::get('parent');
+        if($request->has('parent')){
+            $parent = $request->get('parent');
         }
 
         $company = new Company();
@@ -138,7 +138,7 @@ class CompanyController extends Controller
             ['key' => 7, 'val' => 'OH Expire',],
         ];
 
-        if($request::has('ajax')){
+        if($request->has('ajax')){
             $template = 'edit-ajax';
         }
 
