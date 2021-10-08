@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Session;
 use DataTables;
-use Input;
 use App\Entities\Admin\Company;
 use App\Entities\Admin\Companypersonstruct;
 use App\Entities\Admin\CompanyRelationStruct;
@@ -23,8 +22,8 @@ class CompanyController extends Controller
     public function index()
     {
         $parent = 0;
-        if(Input::has('parent')){
-            $parent = Input::get('parent');
+        if(Request::has('parent')){
+            $parent = Request::get('parent');
         }
 
         $company = new Company();
@@ -65,8 +64,8 @@ class CompanyController extends Controller
             ['key' => 7, 'val' => 'OH Expire',],
         ];
 
-        return view('admin.company.create', ['company' => $getCompany, 
-                                            'langList' => $langList, 
+        return view('admin.company.create', ['company' => $getCompany,
+                                            'langList' => $langList,
                                             'classification' => $classification,
                                             'type' => $type]);
     }
@@ -139,12 +138,12 @@ class CompanyController extends Controller
             ['key' => 7, 'val' => 'OH Expire',],
         ];
 
-        if(Input::has('ajax')){
+        if(Request::has('ajax')){
             $template = 'edit-ajax';
         }
 
-        return view('admin.company.'.$template, ['company' => $getCompany, 
-                                            'langList' => $langList, 
+        return view('admin.company.'.$template, ['company' => $getCompany,
+                                            'langList' => $langList,
                                             'classification' => $classification,
                                             'type' => $type]);
     }
@@ -182,7 +181,7 @@ class CompanyController extends Controller
 
     public function getDatatablesData($parent = 0)
     {
-        $company = Company::select(['companies.id', 'companies.CompanyName', 'companies.Discount', 'companies.OrgNumber', 
+        $company = Company::select(['companies.id', 'companies.CompanyName', 'companies.Discount', 'companies.OrgNumber',
                                     'companies.ExternalID', 'companies.DCity'])
                     // ->join('companystructures AS cs', 'cs.ChildCompanyID', '=', 'companies.id')
                      ->where(['companies.Active' => 1]);
@@ -203,7 +202,7 @@ class CompanyController extends Controller
                                             <i class="glyphicon glyphicon-edit"></i> Edit
                                         </a>';
                                 $child = ' <a href="'.route('companies.index', ['parent' => $company->id]).'" class="btn btn-xs btn-warning editProds">
-                                            <i class="glyphicon glyphicon-th-large"></i> See Child 
+                                            <i class="glyphicon glyphicon-th-large"></i> See Child
                                         </a>';
                                 $detail = ' <a href="'.route('companies.edit', ['id' => $company->id]).'" class="btn btn-xs btn-success editProds">
                                             <i class="glyphicon glyphicon-zoom-in"></i> See Detail
@@ -211,7 +210,7 @@ class CompanyController extends Controller
 
                                 $delete = '';
                                 if(Auth::user()->role == 'admin'){
-                                    $delete = '<form method="post" action="'.route('companies.destroy', $company->id).'" 
+                                    $delete = '<form method="post" action="'.route('companies.destroy', $company->id).'"
                                             style="display: inline;">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="'.csrf_token().'">
@@ -235,11 +234,11 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $companyPersonStruct = Companypersonstruct::select('u.first_name', 'u.last_name', 'u.email', 'u.id')
                                 ->join('users AS u', 'u.id', '=', 'companypersonstructs.user_id')
-                                ->where(['companypersonstructs.CompanyID' => $id, 
+                                ->where(['companypersonstructs.CompanyID' => $id,
                                         'companypersonstructs.Active' => 1,
                                         'u.active' => 1])->get();
 
-        return view('admin.company.get-employee', ['company' => $company, 
+        return view('admin.company.get-employee', ['company' => $company,
                                             'companyPersonStruct' => $companyPersonStruct]);
     }
 
@@ -254,7 +253,7 @@ class CompanyController extends Controller
         $companyRelationStruct = CompanyRelationStruct::where(['FromCompanyID' => $id, 'Active' => 1])
                                     ->get();
 
-        return view('admin.company.get-related-company', ['company' => $company, 
+        return view('admin.company.get-related-company', ['company' => $company,
                                             'companyRelationStruct' => $companyRelationStruct,
                                             'companyAll' => $companyAll]);
     }
