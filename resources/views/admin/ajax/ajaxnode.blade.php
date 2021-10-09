@@ -18,7 +18,9 @@
   			</a>
   		</div>
   		<div class="h-new-title">
-  			<a href="{{ route('nodes.edit', ['id' => $node2->node->id, 'parent' => $parent, 'lvl' => $lvl]) }}">
+  			<a
+{{--                href="{{ route('nodes.edit', ['id' => $node2->node->id, 'parent' => $parent, 'lvl' => $lvl]) }}">--}}
+                href="{{ URL::asset('/admin/nodes') }}/{{ $node->node->id }}/edit?parent={{ $parent }}/lvl={{ $lvl }}">
   				{{ $node2->node->title }} ({{ $node2->node->id }})
   			</a>
   		</div>
