@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use Auth;
 use Menus;
-use Input;
 use App\Entities\Admin\Node;
 use App\Entities\Admin\Nodestructures;
 use App\Entities\Admin\Mediastorages;
@@ -41,11 +39,11 @@ class NodeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $nodes = new Node();
         $arrTemplates = $this->constant['template'];
-        return view('admin.content-management.create', ['nodes' => $nodes, 'parent' => Input::get('parent'), 'arrTemplates' => $arrTemplates]);
+        return view('admin.content-management.create', ['nodes' => $nodes, 'parent' => $request->get('parent'), 'arrTemplates' => $arrTemplates]);
     }
 
     /**
@@ -100,10 +98,10 @@ class NodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        if(Input::has('parent')){
-            $parent = Input::get('parent');
+        if($request->has('parent')){
+            $parent = $request->get('parent');
         }else{
             $parent = 0;
         }
@@ -255,10 +253,10 @@ class NodeController extends Controller
                         ['nodes' => $nodes]);
     }
 
-    public function contentDet($id)
+    public function contentDet(Request $request, $id)
     {
-        if(Input::has('parent')){
-            $parent = Input::get('parent');
+        if($request->has('parent')){
+            $parent = $request->get('parent');
         }else{
             $parent = 0;
         }
@@ -298,7 +296,7 @@ class NodeController extends Controller
     {
         $node = Node::find($id);
 
-        if(Input::hasFile('media1')){
+        if($request->hasFile('media1')){
 
             $uploadedFile = $request->file('media1');
             $path = $uploadedFile->store('public/files');
@@ -314,7 +312,7 @@ class NodeController extends Controller
             $msID = $this->exsMediaStorage($request, null, $id, $request->mediastorage_id1);
         }
 
-        if(Input::hasFile('media2')){
+        if($request->hasFile('media2')){
 
             $uploadedFile = $request->file('media2');
             $path = $uploadedFile->store('public/files');
@@ -334,7 +332,7 @@ class NodeController extends Controller
             $msID = $this->exsMediaStorage($request, null, $id, $request->mediastorage_id2);
         }
 
-        if(Input::hasFile('media3')){
+        if($request->hasFile('media3')){
 
             $uploadedFile = $request->file('media3');
             $path = $uploadedFile->store('public/files');
@@ -354,7 +352,7 @@ class NodeController extends Controller
             $msID = $this->exsMediaStorage($request, null, $id, $request->mediastorage_id3);
         }
 
-        if(Input::hasFile('media4')){
+        if($request->hasFile('media4')){
 
             $uploadedFile = $request->file('media4');
             $path = $uploadedFile->store('public/files');
