@@ -198,13 +198,13 @@ class CompanyController extends Controller
                                 $companyStructure = Companystructure::where(['ParentCompanyID' => $company->id, 'Active' => 1])
                                                     ->count();
 
-                                $edit = ' <a href="'.route('companies.edit', ['id' => $company->id]).'" class="btn btn-xs btn-primary editProds">
+                                $edit = ' <a href="'.route('companies.edit', $company->id).'" class="btn btn-xs btn-primary editProds">
                                             <i class="glyphicon glyphicon-edit"></i> Edit
                                         </a>';
                                 $child = ' <a href="'.route('companies.index', ['parent' => $company->id]).'" class="btn btn-xs btn-warning editProds">
                                             <i class="glyphicon glyphicon-th-large"></i> See Child
                                         </a>';
-                                $detail = ' <a href="'.route('companies.edit', ['id' => $company->id]).'" class="btn btn-xs btn-success editProds">
+                                $detail = ' <a href="'.route('companies.edit', $company->id).'" class="btn btn-xs btn-success editProds">
                                             <i class="glyphicon glyphicon-zoom-in"></i> See Detail
                                         </a>';
 
