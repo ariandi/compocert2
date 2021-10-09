@@ -51,13 +51,17 @@ List
 		      			@foreach($nodes as $node)
 		      			<div class="c-menu-b">
 			      			<div class="h-new-node">
-			      				<a href="{{ URL::asset('/admin/nodes') }}?parent=$node->node->id/2/ajaxnode"
+			      				<a href="{{ URL::asset('/admin/nodes') }}?parent={{ $node->node->id }}/2/ajaxnode"
 			      					id="{{ $node->node->id }}" class="lvl1clicked">
 				      				<img src="{{ asset('images/folder1.png') }}" class="img-responsive" />
 				      			</a>
 				      		</div>
 				      		<div class="h-new-title">
-				      			<a href="{{ route('nodes.edit', ['id' => $node->node->id, 'parent' => session()->get('lvl1Val'), 'lvl' => $lvl]) }}">{{ $node->node->title }} ({{ $node->node->id }})</a>
+				      			<a
+{{--                                    href="{{ route('nodes.edit', ['id' => $node->node->id, 'parent' => session()->get('lvl1Val'), 'lvl' => $lvl]) }}">--}}
+                                    href="{{ URL::asset('/admin/nodes') }}/{{ $node->node->id }}/edit?parent={{ session()->get('lvl1Val') }}/lvl={{ $lvl }}">
+                                    {{ $node->node->title }} ({{ $node->node->id }})
+                                </a>
 				      		</div>
 
 				      		<div class="clearfix"></div>
