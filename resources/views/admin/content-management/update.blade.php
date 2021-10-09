@@ -58,7 +58,7 @@
         }).done(function (data) {
             if(data == 'Success'){
               alert('success');
-              $(".loadnewchild").load("{{ route('nodes.edit', ['id' => $nodestr->child_node_id, 'parent' => $parent, 'lvl' => 2 ]) }} #loadtablechild");
+              $(".loadnewchild").load("{{ route('nodes.edit', $nodestr->child_node_id, ['parent' => $parent, 'lvl' => 2 ]) }} #loadtablechild");
             }else{
               alert('Not Save, Something wrong.!');
             }
@@ -84,8 +84,8 @@
               $this
                 .closest("tr")
                 .remove();
-              $(".loadnewnode").load("{{ route('nodes.edit', ['id' => $nodestr->child_node_id, 'parent' => $parent, 'lvl' => 2  ]) }} #loadtablenode");
-              $(".loadnewchild").load("{{ route('nodes.edit', ['id' => $nodestr->child_node_id, 'parent' => $parent, 'lvl' => 2 ]) }} #loadtablechild");
+              $(".loadnewnode").load("{{ route('nodes.edit', $nodestr->child_node_id, ['parent' => $parent, 'lvl' => 2  ]) }} #loadtablenode");
+              $(".loadnewchild").load("{{ route('nodes.edit', $nodestr->child_node_id, ['parent' => $parent, 'lvl' => 2 ]) }} #loadtablechild");
             }else{
               alert('Not Save, Something wrong.!');
             }
@@ -111,8 +111,8 @@
               $this
                 .closest("tr")
                 .remove();
-              $(".loadnewnode").load("{{ route('nodes.edit', ['id' => $nodestr->child_node_id, 'parent' => $parent, 'lvl' => 2 ]) }} #loadtablenode");
-              $(".loadnewchild").load("{{ route('nodes.edit', ['id' => $nodestr->child_node_id, 'parent' => $parent, 'lvl' => 2 ]) }} #loadtablechild");
+              $(".loadnewnode").load("{{ route('nodes.edit', $nodestr->child_node_id, ['parent' => $parent, 'lvl' => 2 ]) }} #loadtablenode");
+              $(".loadnewchild").load("{{ route('nodes.edit', $nodestr->child_node_id,  ['parent' => $parent, 'lvl' => 2 ]) }} #loadtablechild");
             }else{
               alert('Not Save, Something wrong.!');
             }
@@ -132,7 +132,7 @@
 
               if(thirdparty == 'tinymce'){
                 tinymce.remove();
-                
+
                 tinymce.init({
                   selector: 'textarea',
                   entity_encoding : 'raw',
@@ -155,7 +155,7 @@
                   autoresize_max_height: 350
                 });
               }
-              
+
           },
           error: function(e){
             alert("Error");
@@ -236,7 +236,7 @@
       </div>
 
       <div class="col-md-4 text-center" style="margin-bottom: 15px;">
-        <button class="btn btn-success btn-block productTextAjax" type="button" 
+        <button class="btn btn-success btn-block productTextAjax" type="button"
         target="{{ route('nodes.content-img', ['id' => $nodes->id]) }}">Nodes Images</button>
       </div>
     </div>
@@ -349,7 +349,7 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
 
-            
+
           </div>
         </div>
         <!-- /.tab-content -->
