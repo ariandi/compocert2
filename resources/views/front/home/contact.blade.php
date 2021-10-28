@@ -1,7 +1,7 @@
 @extends('front.layouts.main')
 
 @section('title')
-Intercert Indonesia | {{ $node->title }}
+Madu Pay | {{ $node->title }}
 @endsection
 
 @section('subtitle')
@@ -27,7 +27,7 @@ $node->description
 @section('js')
   <script>
     $(document).ready(function(){
-     
+
     });
   </script>
 @endsection
@@ -69,7 +69,7 @@ $node->description
               </div>
             </form>
           </div>
-          
+
         </div>
       </main>
       <!-- /Main -->
@@ -91,7 +91,7 @@ $node->description
         <div class="widget">
           <h3 class="title">Address</h3>
           <div class="widget-category">
-            <div class="contact-p1-cont2"> 
+            <div class="contact-p1-cont2">
               <address class="address-details-f">
                 {!! str_replace("</p>", "", str_replace("<p>", "", App\Entities\Admin\Company::find(1)->DeliveryCondition))  !!}<br />
                 Phone: {{  App\Entities\Admin\Company::find(1)->phone1 }} <br>

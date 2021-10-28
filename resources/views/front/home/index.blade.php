@@ -1,7 +1,7 @@
 @extends('front.layouts.main')
 
 @section('title')
-Intercert Indonesia | {{ $node->title }}
+Madu Pay | {{ $node->title }}
 @endsection
 
 @section('keywords')

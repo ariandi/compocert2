@@ -1,7 +1,7 @@
 @extends('front.layouts.main')
 
 @section('title')
-Intercert Indonesia | {{ $node->title }}
+Madu Pay | {{ $node->title }}
 @endsection
 
 @section('subtitle')
@@ -82,14 +82,14 @@ $node->description
 @section('js')
   <script>
     $(document).ready(function(){
-     
+
     });
   </script>
 @endsection
 
 
 @section('content')
-  
+
 <!-- Blog -->
 <div id="blog" class="section md-padding" style="padding-top: 50px;">
 
@@ -102,9 +102,9 @@ $node->description
       <!-- Main -->
       <main id="main" class="col-md-9">
         <div class="blog">
-          
+
           <div class="blog-content">
-              
+
               @if (\Session::has('success'))
                 <div class="alert alert-success notif">
                     <p>{{ Session::get('success') }}</p>
@@ -134,7 +134,7 @@ $node->description
                 <div class="cert-img-show">
                   <div class="cert-active">Active</div>
                   <a href="{{ url(Storage::url($cert->file)) }}">
-                    <img src="{{ url(Storage::url($cert->file)) }}" 
+                    <img src="{{ url(Storage::url($cert->file)) }}"
                     title="{{ $cert->certificate_no }}" class="img-responsive"
                     style="display: block;
                             margin-left: auto;
@@ -145,7 +145,7 @@ $node->description
               @endif
 
           </div>
-          
+
         </div>
       </main>
       <!-- /Main -->
