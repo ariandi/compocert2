@@ -16,7 +16,7 @@ author Email: db_duabelas@yahoo.com
   <meta name="author" content="Ariandi Nugraha">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <link rel="shortcut icon" href="{{ asset('logo/logointercet.png') }}">
+  <link rel="shortcut icon" href="{{ asset('logo/logomadu.png') }}">
 
   <title>@yield('title')</title>
 
@@ -45,7 +45,7 @@ author Email: db_duabelas@yahoo.com
       <div id="headlink"></div>
       @if(Route::currentRouteName() == 'front.home')
         <!-- Background Image -->
-        <div class="bg-img" style="background-image: url({{ asset('theme/img/background1.jpg') }});">
+        <div class="bg-img" style="background-image: url({{ asset('logo/bg_slide.png') }});">
           <div class="overlay"></div>
         </div>
         <!-- /Background Image -->
@@ -59,8 +59,8 @@ author Email: db_duabelas@yahoo.com
             <!-- Logo -->
             <div class="navbar-brand">
               <a href="/">
-                <img class="logo" src="{{ asset('logo/logointercet.png') }}" alt="logo">
-                <img class="logo-alt" src="{{ asset('logo/logointercet.png') }}" alt="logo">
+                <img class="logo" src="{{ asset('logo/logomadu_white.png') }}" alt="logo">
+                <img class="logo-alt" src="{{ asset('logo/logomadu.png') }}" alt="logo">
               </a>
             </div>
             <!-- /Logo -->
