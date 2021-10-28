@@ -59,8 +59,8 @@ author Email: db_duabelas@yahoo.com
             <!-- Logo -->
             <div class="navbar-brand">
               <a href="/">
-                <img class="logo" src="{{ asset('logo/logomadu_white.png') }}" alt="logo">
-                <img class="logo-alt" src="{{ asset('logo/logomadu.png') }}" alt="logo">
+                <img class="logo" src="{{ asset('logo/logomadu.png') }}" alt="logo">
+                <img class="logo-alt" src="{{ asset('logo/logomadu_white.png') }}" alt="logo">
               </a>
             </div>
             <!-- /Logo -->
